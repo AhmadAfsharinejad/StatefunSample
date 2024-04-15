@@ -6,11 +6,16 @@ import org.example.generated.People;
 
 //Note: there is org.apache.flink.statefun.sdk.java.Context also but not compatible with StatefulFunctionModule
 public class FilterFunction implements StatefulFunction {
+
+    private int count = 0;
+
     @Override
     public void invoke(Context context, Object object) {
         if (!(object instanceof People)) {
             throw new RuntimeException("bad message.");
         }
+
+        count++;
 
         var people = (People) object;
         if (people.getAge() < 50) {

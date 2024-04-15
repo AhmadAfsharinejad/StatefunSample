@@ -1,0 +1,31 @@
+version: "2.1"
+
+services:
+
+  ###############################################################
+  #    Functions service
+  ###############################################################
+
+  #  marketplace:
+  #    build:
+  #      dockerfile: Dockerfile
+  #      context: .
+  #    expose:
+  #      - "1108"
+  #    volumes:
+  #      - ./app.properties:/app.properties
+
+  ###############################################################
+  #    StateFun runtime
+  ###############################################################
+
+  statefunPlayground:
+    image: apache/flink-statefun-playground:latest
+    ports:
+      - "8081:8081"
+      - "8090:8090"
+      - "8091:8091"
+    #    depends_on:
+    #      - marketplace
+    volumes:
+      - ./module.yaml:/module.yaml
