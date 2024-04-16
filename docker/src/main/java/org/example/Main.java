@@ -18,7 +18,7 @@ public class Main {
         /* This example uses the Undertow http server, but any HTTP server/framework will work as-well */
         Undertow server =
                 Undertow.builder()
-                        .addHttpListener(1108, "0.0.0.0")
+                        .addHttpListener(1108, "localhost")
                         .setHandler(new UndertowStateFunHandler(handler))
                         .setServerOption(ENABLE_HTTP2, true)
                         .build();

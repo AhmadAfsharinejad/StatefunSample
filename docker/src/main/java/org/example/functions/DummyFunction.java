@@ -9,8 +9,8 @@ import org.apache.flink.statefun.sdk.java.message.MessageBuilder;
 import org.example.Constants;
 import org.example.entities.Person;
 import org.example.entities.Row;
-import org.example.messages.PersonMessage;
-import org.example.messages.RowMessage;
+import org.example.metaData.PersonMetaData;
+import org.example.metaData.RowMetaData;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -27,8 +27,8 @@ public final class DummyFunction implements StatefulFunction {
 
         System.out.println("dummy");
 
-        if (message.is(PersonMessage.PERSON_TYPE)) {
-            Person person = message.as(PersonMessage.PERSON_TYPE);
+        if (message.is(PersonMetaData.PERSON_TYPE)) {
+            Person person = message.as(PersonMetaData.PERSON_TYPE);
             System.out.println(person.getName());
 
             var newPerson = new Person(444, "23");
@@ -41,7 +41,7 @@ public final class DummyFunction implements StatefulFunction {
 
             Message newMessage =
                     MessageBuilder.forAddress(FilterFunction.TYPE, String.valueOf(newPerson.getId()))
-                            .withCustomType(RowMessage.ROW_TYPE, row)
+                            .withCustomType(RowMetaData.ROW_TYPE, row)
                             .build();
 
             context.send(newMessage);

@@ -1,4 +1,4 @@
-package org.example.messages;
+package org.example.metaData;
 
 import org.apache.flink.statefun.sdk.java.TypeName;
 import org.apache.flink.statefun.sdk.java.types.SimpleType;
@@ -8,7 +8,7 @@ import org.example.entities.Person;
 
 import static org.example.CustomSerializer.messageMapper;
 
-public final class PersonMessage {
+public final class PersonMetaData {
 
     public static final Type<Person> PERSON_TYPE =
             SimpleType.simpleImmutableTypeFrom(

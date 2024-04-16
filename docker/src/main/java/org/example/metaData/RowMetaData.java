@@ -1,4 +1,4 @@
-package org.example.messages;
+package org.example.metaData;
 
 import org.apache.flink.statefun.sdk.java.TypeName;
 import org.apache.flink.statefun.sdk.java.types.SimpleType;
@@ -8,7 +8,7 @@ import org.example.entities.Row;
 
 import static org.example.CustomSerializer.messageMapper;
 
-public class RowMessage {
+public class RowMetaData {
     public static final Type<Row> ROW_TYPE =
             SimpleType.simpleImmutableTypeFrom(
                     TypeName.typeNameOf(Constants.TYPES_NAMESPACE, "GetRow"),
