@@ -1,0 +1,13 @@
+execution.checkpointing.interval: 10s
+parallelism.default: 1
+
+
+classloader.parent-first-patterns.additional: org.apache.flink.statefun;org.apache.kafka;com.google.protobuf
+execution.checkpointing.max-concurrent-checkpoints: 1
+jobmanager.scheduler: legacy
+state.backend: rocksdb
+state.backend.rocksdb.timer-service.factory: ROCKSDB
+state.checkpoints.dir: file:///checkpoint-dir
+state.backend.incremental: true
+taskmanager.memory.process.size: 4g
+taskmanager.numberOfTaskSlots: 1

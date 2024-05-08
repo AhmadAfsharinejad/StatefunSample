@@ -1,0 +1,50 @@
+version: "2.1"
+
+services:
+  master:
+    build:
+      context: .
+    expose:
+      - "6123"
+    ports:
+      - "8081:8081"
+    environment:
+      - ROLE=master
+      - MASTER_HOST=master
+    volumes:
+      - ./checkpoint-dir:/checkpoint-dir
+
+  worker1:
+    build:
+      context: .
+    expose:
+      - "6121"
+      - "6122"
+    depends_on:
+      - master
+      - kafka-broker
+    links:
+      - "master:master"
+    environment:
+      - ROLE=worker
+      - MASTER_HOST=master
+    volumes:
+      - ./checkpoint-dir:/checkpoint-dir
+
+#  worker2:
+#    build:
+#      context: .
+#    expose:
+#      - "6121"
+#      - "6122"
+#    depends_on:
+#      - master
+#      - kafka-broker
+#    links:
+#      - "master:master"
+#      - "kafka-broker:kafka-broker"
+#    environment:
+#      - ROLE=worker
+#      - MASTER_HOST=master
+#    volumes:
+#      - ./checkpoint-dir:/checkpoint-dir

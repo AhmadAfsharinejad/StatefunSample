@@ -19,6 +19,7 @@
     <modules>
         <module>local</module>
         <module>docker</module>
+        <module>embedded</module>
     </modules>
 
 
