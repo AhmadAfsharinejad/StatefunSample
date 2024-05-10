@@ -2,9 +2,10 @@ package org.example.dtos;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import lombok.Getter;
 
-@Getter
+@Data
 public class EmbeddedDto {
     private final String id;
     private final String content;

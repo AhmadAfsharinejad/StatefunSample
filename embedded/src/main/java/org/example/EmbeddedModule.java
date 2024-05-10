@@ -1,6 +1,7 @@
 package org.example;
 
 import com.google.auto.service.AutoService;
+import org.apache.flink.statefun.sdk.kafka.KafkaIngressBuilder;
 import org.apache.flink.statefun.sdk.spi.StatefulFunctionModule;
 import org.example.functions.DummyOutputFunction;
 

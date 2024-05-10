@@ -1,4 +1,4 @@
-version: "2.1"
+version: "3.8"
 
 services:
   master:
@@ -22,7 +22,6 @@ services:
       - "6122"
     depends_on:
       - master
-      - kafka-broker
     links:
       - "master:master"
     environment:
@@ -31,20 +30,19 @@ services:
     volumes:
       - ./checkpoint-dir:/checkpoint-dir
 
-#  worker2:
-#    build:
-#      context: .
-#    expose:
-#      - "6121"
-#      - "6122"
-#    depends_on:
-#      - master
-#      - kafka-broker
-#    links:
-#      - "master:master"
-#      - "kafka-broker:kafka-broker"
-#    environment:
-#      - ROLE=worker
-#      - MASTER_HOST=master
-#    volumes:
-#      - ./checkpoint-dir:/checkpoint-dir
+
+  # worker2:
+  #   build:
+  #     context: .
+  #   expose:
+  #     - "6121"
+  #     - "6122"
+  #   depends_on:
+  #     - master
+  #   links:
+  #     - "master:master"
+  #   environment:
+  #     - ROLE=worker
+  #     - MASTER_HOST=master
+  #   volumes:
+  #     - ./checkpoint-dir:/checkpoint-dir

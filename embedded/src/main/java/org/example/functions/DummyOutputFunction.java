@@ -11,6 +11,7 @@ public class DummyOutputFunction implements StatefulFunction {
 
     @Override
     public void invoke(Context context, Object object) {
+
         System.out.println("Dummy" + counter);
         counter++;
     }
