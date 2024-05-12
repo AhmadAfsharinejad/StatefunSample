@@ -1,13 +1,12 @@
 package org.example;
 
 import org.apache.flink.statefun.sdk.io.Router;
-import org.apache.flink.statefun.sdk.reqreply.generated.TypedValue;
-import org.example.dtos.EmbeddedDto;
+import org.example.generated.People;
 import org.example.functions.DummyOutputFunction;
 
-public class EmbeddedRouter implements Router<TypedValue> {
+public class EmbeddedRouter implements Router<People> {
     @Override
-    public void route(TypedValue embeddedDto, Downstream<TypedValue> downstream) {
-        downstream.forward(DummyOutputFunction.TYPE, "1", embeddedDto);
+    public void route(People input, Downstream<People> downstream) {
+        downstream.forward(DummyOutputFunction.TYPE, "1", input);
     }
 }
