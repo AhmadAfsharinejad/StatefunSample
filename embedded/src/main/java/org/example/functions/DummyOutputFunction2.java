@@ -6,8 +6,8 @@ import org.apache.flink.statefun.sdk.StatefulFunction;
 import org.example.Common.TimeProvider;
 import org.example.Constants;
 
-public class DummyOutputFunction implements StatefulFunction {
-    public static final FunctionType TYPE = new FunctionType(Constants.NAMESPACE, "dummy-function");
+public class DummyOutputFunction2 implements StatefulFunction {
+    public static final FunctionType TYPE = new FunctionType(Constants.NAMESPACE, "dummy-function-2");
     private int counter = 0;
     private long firstTime = 0;
 
@@ -15,7 +15,7 @@ public class DummyOutputFunction implements StatefulFunction {
     public void invoke(Context context, Object object) {
         if(firstTime == 0){
             firstTime =  System.currentTimeMillis();
-            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+            System.out.println("22^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^22");
         }
 
         if(counter % 10000 == 0){

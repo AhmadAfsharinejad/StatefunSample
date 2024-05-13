@@ -29,20 +29,30 @@ services:
       - MASTER_HOST=master
     volumes:
       - ./checkpoint-dir:/checkpoint-dir
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.50'
+    #       memory: 512M 
 
 
-  # worker2:
-  #   build:
-  #     context: .
-  #   expose:
-  #     - "6121"
-  #     - "6122"
-  #   depends_on:
-  #     - master
-  #   links:
-  #     - "master:master"
-  #   environment:
-  #     - ROLE=worker
-  #     - MASTER_HOST=master
-  #   volumes:
-  #     - ./checkpoint-dir:/checkpoint-dir
+  worker2:
+    build:
+      context: .
+    expose:
+      - "6121"
+      - "6122"
+    depends_on:
+      - master
+    links:
+      - "master:master"
+    environment:
+      - ROLE=worker
+      - MASTER_HOST=master
+    volumes:
+      - ./checkpoint-dir:/checkpoint-dir
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.50'
+    #       memory: 512M 

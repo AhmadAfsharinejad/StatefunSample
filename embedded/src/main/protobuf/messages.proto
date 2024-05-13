@@ -5,8 +5,15 @@ package org.example;
 option java_multiple_files = true;
 option java_package = "org.example.generated";
 
+message People2 {
+  string Id = 1;
+  string Name = 2;
+  int32 Age = 3;
+}
+
 message People {
   string Id = 1;
   string Name = 2;
   int32 Age = 3;
 }
+
