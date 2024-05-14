@@ -31,13 +31,13 @@ public final class DummyFunction implements StatefulFunction {
             Person person = message.as(PersonMetaData.PERSON_TYPE);
             System.out.println(person.getName());
 
-            var newPerson = new Person(444, "23");
+            Person newPerson = new Person(444, "23");
 
-            var res = new Object[3];
+            Object[] res = new Object[3];
             res[0] = 21;
             res[1] = "sds";
             res[2] = false;
-            var row = new Row(res);
+            Row row = new Row(res);
 
             Message newMessage =
                     MessageBuilder.forAddress(FilterFunction.TYPE, String.valueOf(newPerson.getId()))

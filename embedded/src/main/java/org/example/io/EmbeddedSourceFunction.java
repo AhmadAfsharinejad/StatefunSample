@@ -12,26 +12,30 @@ import org.example.generated.People;
 
 public class EmbeddedSourceFunction extends RichSourceFunction<People> {
     private volatile boolean running = true;
+//    private final long MaxFinal = 1_000_000_000;
+    private final long MaxFinal = 1_00;
 
     @Override
     public void run(SourceContext<People> sourceContext) throws Exception {
-        int counter = 0;
+        long counter = 0;
 
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         System.out.println("startTime: " + TimeProvider.getCurrentTime());
 
         while (running) {
 
-//            Thread.sleep(1000);
+//            Thread.sleep(10);
 
-            synchronized (sourceContext.getCheckpointLock()) {
+//            synchronized (sourceContext.getCheckpointLock())
+            {
                 //TODO
 //                sourceContext.collect(getTypedValue(new EmbeddedDto(Integer.toString(counter),"salam")));
                 sourceContext.collect(getItem(counter));
+                System.out.println("myCounter: ============" + counter);
                 counter++;
             }
 
-            if(counter == 1_000_000){
+            if(counter == MaxFinal){
 
                 System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                 System.out.println("endTime: " + TimeProvider.getCurrentTime());
@@ -41,7 +45,7 @@ public class EmbeddedSourceFunction extends RichSourceFunction<People> {
         }
     }
 
-    private static People getItem(int id){
+    private People getItem(long id){
         return People.newBuilder().setId(String.valueOf(id)).setAge(1).setName("123").build();
     }
 

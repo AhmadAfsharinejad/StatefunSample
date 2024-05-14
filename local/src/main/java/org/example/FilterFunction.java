@@ -17,7 +17,7 @@ public class FilterFunction implements StatefulFunction {
 
         count++;
 
-        var people = (People) object;
+        People people = (People) object;
         if (people.getAge() < 50) {
             return;
         }

@@ -1,27 +1,38 @@
 package org.example.functions;
 
 import org.apache.flink.statefun.sdk.Context;
-import org.apache.flink.statefun.sdk.FunctionType;
 import org.apache.flink.statefun.sdk.StatefulFunction;
+import org.apache.flink.statefun.sdk.annotations.Persisted;
+import org.apache.flink.statefun.sdk.state.PersistedValue;
 import org.example.Common.TimeProvider;
-import org.example.Constants;
 
 public class DummyOutputFunction implements StatefulFunction {
-    public static final FunctionType TYPE = new FunctionType(Constants.NAMESPACE, "dummy-function");
-    private int counter = 0;
-    private long firstTime = 0;
+
+    @Persisted
+    private final PersistedValue<String> SEEN = PersistedValue.of("seen", String.class);
 
     @Override
     public void invoke(Context context, Object object) {
-        if(firstTime == 0){
-            firstTime =  System.currentTimeMillis();
-            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+
+        String counter = context.self().id().trim().trim();
+
+        SEEN.set(counter);
+
+        if(counter.equals("10")){
+            try {
+                Thread.sleep(20000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
-        if(counter % 10000 == 0){
-            System.out.println("counter: " + counter + "  Id: " + context.self().id() + " node:" + firstTime + "  currentTime:" + TimeProvider.getCurrentTime());
+//        if(counter % 10000 == 0)
+        {
+            System.out.println("26counter: " + counter + "  Id: " + context.self().id() +
+                    "  currentTime:" + TimeProvider.getCurrentTime() +
+                    " ThreadId: " + Thread.currentThread().getId());
         }
 
-        counter++;
+//        counter++;
     }
 }

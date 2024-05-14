@@ -7,7 +7,7 @@ import org.example.functions.DummyOutputFunction;
 public class EmbeddedRouter implements Router<People> {
     @Override
     public void route(People input, Downstream<People> downstream) {
-        downstream.forward(DummyOutputFunction.TYPE, input.getId(), input);
+        downstream.forward(Constants.DUMMY_FUNCTION_TYPE, input.getId(), input);
     }
 }
 

@@ -17,14 +17,14 @@ public class CountFunction implements StatefulFunction {
             throw new RuntimeException("bad message.");
         }
 
-        var seenCount = SEEN.getOrDefault(0) + 1;
+        Integer seenCount = SEEN.getOrDefault(0) + 1;
         SEEN.set(seenCount);
 
         if (seenCount < 10) {
             return;
         }
 
-        var people = (People) object;
+        People people = (People) object;
 
         context.send(FlinkConstants.MESSAGE_EGRESS, people);
     }

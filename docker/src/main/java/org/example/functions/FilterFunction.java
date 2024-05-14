@@ -7,6 +7,7 @@ import org.apache.flink.statefun.sdk.java.TypeName;
 import org.apache.flink.statefun.sdk.java.message.Message;
 import org.example.Constants;
 import org.example.entities.Person;
+import org.example.entities.Row;
 import org.example.metaData.PersonMetaData;
 import org.example.metaData.RowMetaData;
 
@@ -30,7 +31,7 @@ public final class FilterFunction implements StatefulFunction {
         }
 
         if (message.is(RowMetaData.ROW_TYPE)) {
-            var row = message.as(RowMetaData.ROW_TYPE);
+            Row row = message.as(RowMetaData.ROW_TYPE);
         }
 
         return context.done();
