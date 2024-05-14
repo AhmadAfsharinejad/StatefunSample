@@ -42,7 +42,10 @@ taskmanager.memory.process.size: 4g
 ######
 
 parallelism.default: 4
+#Note: the number of instance for each function
+#Note: if this is bigger than slots use another taskmanager --> multi node
 taskmanager.numberOfTaskSlots: 4
+
 
 ######
 #cluster.evenly-spread-out-slots: true
