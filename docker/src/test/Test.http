@@ -1,4 +1,4 @@
-PUT localhost:8090/stateFunSampleNS/Dummy/123
+PUT localhost:8090/stateFunSampleNS/Dummy/13
 Content-Type: application/vnd.stateFunSampleNS/GetPerson
 
 {"id": "1","name": "ahmad"}

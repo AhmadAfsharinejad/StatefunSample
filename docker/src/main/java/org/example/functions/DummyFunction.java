@@ -25,7 +25,15 @@ public final class DummyFunction implements StatefulFunction {
     @Override
     public CompletableFuture<Void> apply(Context context, Message message) throws Throwable {
 
-        System.out.println("dummy");
+        String id = context.self().id().trim();
+
+        System.out.println("dummy" + id);
+
+        if(id.equals("12")){
+            Thread.sleep(10000);
+            System.out.println("timeout Finish");
+        }
+
 
         if (message.is(PersonMetaData.PERSON_TYPE)) {
             Person person = message.as(PersonMetaData.PERSON_TYPE);
